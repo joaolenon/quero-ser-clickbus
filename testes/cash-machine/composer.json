@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-0": { "Cash\\": "src/" }
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
