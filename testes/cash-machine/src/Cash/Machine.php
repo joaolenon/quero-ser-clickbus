@@ -4,7 +4,7 @@ namespace Cash;
 
 class Machine
 {
-    private $allowNotes = [100, 50, 20, 10];
+    private $allowedNotes = [100, 50, 20, 10];
 
     public function withdraw($value)
     {
@@ -15,7 +15,7 @@ class Machine
 
         $banknotes = [];
 
-        foreach ($this->allowNotes as $note) {
+        foreach ($this->allowedNotes as $note) {
             if ($value < $note && $note < $value) {
                 continue;
             }
@@ -23,13 +23,13 @@ class Machine
             $qty    = floor($value/$note);
             $value  -= $note * $qty;
 
-            $banknotes = array_merge($banknotes, $this->separeNotes($qty, $note));
+            $banknotes = array_merge($banknotes, $this->separateNotes($qty, $note));
         }
 
         return $banknotes;
     }
 
-    protected function separeNotes($qty, $value)
+    protected function separateNotes($qty, $value)
     {
         $banknotes = [];
 
@@ -49,7 +49,7 @@ class Machine
             throw new \InvalidArgumentException('The value must be positive');
         }
 
-        if (is_float($value/end($this->allowNotes))) {
+        if (is_float($value/end($this->allowedNotes))) {
             throw new NoteUnavailableException('The value is not valid');
         }
     }
